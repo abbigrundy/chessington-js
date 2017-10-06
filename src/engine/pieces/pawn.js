@@ -1,11 +1,18 @@
-import Piece from './piece';
+import Piece from "./piece";
+import Player from "../player";
 
 export default class Pawn extends Piece {
-    constructor(player) {
-        super(player);
-    }
+  constructor(player) {
+    super(player);
+  }
 
-    getAvailableMoves(board) {
-        return new Array(0);
+  getAvailableMoves(board) {
+    const currentLocation = board.findPiece(this);
+    if (this.player === Player.WHITE) {
+      currentLocation.row++;
+    } else {
+      currentLocation.row--;
     }
+    return new Array(currentLocation);
+  }
 }
